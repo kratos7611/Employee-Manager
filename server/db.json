@@ -1,0 +1,15 @@
+{
+    "Users": [
+        {
+            "id": "0001",
+            "firstName": "Nischal",
+            "lastName": "Adhikari",
+            "Photo": "",
+            "jobType": "Frontend Developer",
+            "role": "admin",
+            "mobile": "9841877119",
+            "email":"nischal.b.adhikari@gmail.com"
+                      
+        }
+    ]
+}
