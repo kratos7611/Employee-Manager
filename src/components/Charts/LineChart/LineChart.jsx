@@ -7,7 +7,6 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
 } from "recharts";
 
 const Chart3 = () => {
@@ -75,10 +74,10 @@ const Chart3 = () => {
       <Line
         type="monotone"
         dataKey="pv"
-        stroke="#8884d8"
+        stroke="#000"
         activeDot={{ r: 8 }}
       />
-      <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+      <Line type="monotone" dataKey="uv" stroke="#FE4C24" />
     </LineChart>
   );
 };
