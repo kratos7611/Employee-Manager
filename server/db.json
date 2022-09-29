@@ -4,12 +4,11 @@
             "id": "0001",
             "firstName": "Nischal",
             "lastName": "Adhikari",
-            "Photo": "",
-            "jobType": "Frontend Developer",
+            "photo": "https://www.freeiconspng.com/thumbs/contact-icon-png/contact-icon-png-1.png",
+            "title": "Frontend Developer",
             "role": "admin",
             "mobile": "9841877119",
-            "email":"nischal.b.adhikari@gmail.com"
-                      
+            "email":"nischal.b.adhikari@gmail.com"      
         }
     ]
 }

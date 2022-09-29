@@ -20,7 +20,7 @@ const Sidebar = () => {
   return (
     <div>
       <Box>
-        <Stack direction="column" sx={{ p: 3, flex:4 }} align="center">
+        <Stack direction="column" sx={{ p: 3, flex:2 }} align="center">
           <Typography variant="h6">EMS</Typography>
 
           <Box sx={{ mt: "100px" }}>
@@ -50,6 +50,22 @@ const Sidebar = () => {
                       <AccountCircleIcon sx={{ fontSize: "1.8em" }} />
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <LogoutIcon sx={{ fontSize: "1.8em" }} />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <LogoutIcon sx={{ fontSize: "1.8em" }} />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
