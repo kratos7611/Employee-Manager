@@ -2,7 +2,6 @@ import {
   Card,
   Box,
   CardContent,
-  Divider,
   Grid,
   Stack,
   Typography,
@@ -10,13 +9,20 @@ import {
   ListItem,
   List,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UsersList from "../../components/UsersList/UsersList";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Chart3 from "../../components/Charts/LineChart/LineChart";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
+  const [usersNumber, setusersNumber] = useState(0);
+
+  const pullData = (data) => {
+    setusersNumber(data);
+  };
+
   return (
     <Stack direction="row">
       <Grid container>
@@ -53,12 +59,12 @@ const AdminDashboard = () => {
                 </Typography>
                 <Box>
                   <Grid container sx={{ mt: "5px", textAlign: "center" }}>
-                    <Stack direction='column'>
-                      <Typography variant="h5" color="#FE4C24" sx={{ p:1 }}>
-                        15 Registered Users
+                    <Stack direction="column">
+                      <Typography variant="h5" color="#FE4C24" sx={{ p: 1 }}>
+                        {usersNumber} Registered Users
                       </Typography>
                       <List>
-                        <ListItem sx={{ color:'#fff' }}>hello</ListItem>
+                        <ListItem sx={{ color: "#fff" }}>hello</ListItem>
                       </List>
                     </Stack>
                   </Grid>
@@ -87,40 +93,43 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Box sx={{ p: 2, mt: "5px" }}>
-            <Stack direction="column">
-              <Stack direction="row" justifyContent="space-between">
-                <Stack direction="row" alignItems="center">
+          <Card
+            sx={{
+              backgroundColor: "#302f2f",
+              p: 2,
+              flex: 2,
+              borderRadius: "20px",
+              mt: 4,
+            }}
+          >
+            <Box>
+              <Stack direction="column">
+                <Stack direction="row" justifyContent="space-between">
                   <Typography
                     variant="h3"
                     fontSize="32px"
                     fontWeight="bold"
-                    sx={{ mt: "50px", mb: "30px" }}
+                    color="white"
+                    sx={{ mt: "30px" }}
                   >
                     Users list
                   </Typography>
-                  <Button
-                    sx={{ ml: "20px", mt: "20px" }}
-                    size="large"
-                    variant="contained"
-                    color="success"
-                  >
-                    <AddCircleIcon sx={{ fontSize: "17px", p: 1 }} />
-                    Add User
-                  </Button>
+                  <Link to={"/employee/add"} style={{ textDecoration: 'none' }}>
+                    <Button
+                      sx={{ ml: "20px", mt: "25px" }}
+                      size="large"
+                      variant="contained"
+                      color="success"
+                    >
+                      <AddCircleIcon sx={{ fontSize: "17px", p: 1 }} />
+                      Add User
+                    </Button>
+                  </Link>
                 </Stack>
-                <Typography
-                  variant="h3"
-                  fontSize="32px"
-                  fontWeight="bold"
-                  sx={{ mt: "50px", mb: "30px", mr: "100px" }}
-                >
-                  Actions
-                </Typography>
+                <UsersList function={pullData} />
               </Stack>
-              <UsersList />
-            </Stack>
-          </Box>
+            </Box>
+          </Card>
         </Box>
       </Grid>
     </Stack>

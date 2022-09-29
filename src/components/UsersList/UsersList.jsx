@@ -1,124 +1,102 @@
 import {
-  Card,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemButton,
-  Typography,
-  Divider,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Button,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/system";
+import { UsersService } from "../../Services/UsersService";
 
-const UsersList = () => {
+const UsersList = (props) => {
+  const [state, setState] = useState({
+    contacts: [],
+    errorMessage: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response = await UsersService.getAllEmployees();
+        setState({
+          ...state,
+          contacts: response.data,
+        });
+      } catch (error) {
+        setState({
+          ...state,
+          errorMessage: "Sorry! Ran into an error",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const data = Object.keys(state.contacts).length;
+
+  props.function(data)
+
   return (
-    <Card sx={{ backgroundColor: "#0F1322", flex: 2, borderRadius: "20px" }}>
-      <List sx={{ p: 3 }}>
-        <ListItem disablePadding sx={{ p:'2px' }}>
-          <Typography variant="body1" fontSize="18px" color="#fff">
-            Ruson Maharjan
-          </Typography>
-          <Stack direction="row" sx={{ ml: "auto" }}>
-            <ListItemButton>
-              <ListItemIcon>
-                <VisibilityIcon
-                  sx={{
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    fontSize: "20px",
-                    border: "#fff 1px solid",
-                    borderRadius: "5px",
-                    p: "5px",
-                  }}
-                />
-              </ListItemIcon>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemIcon>
-                <EditIcon
-                  sx={{
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    fontSize: "20px",
-                    border: "#fff 1px solid",
-                    borderRadius: "5px",
-                    p: "5px",
-                  }}
-                />
-              </ListItemIcon>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemIcon>
-                <DeleteIcon
-                  sx={{
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    fontSize: "20px",
-                    border: "#fff 1px solid",
-                    borderRadius: "5px",
-                    p: "5px",
-                  }}
-                />
-              </ListItemIcon>
-            </ListItemButton>
-          </Stack>
-        </ListItem >
-        <Divider sx={{ borderColor: "#5e5e5e", width: "97%", p:'5px'  }} />
-        <ListItem disablePadding sx={{ p:'2px' }}>
-          <Typography variant="body1" fontSize="18px" color="#fff">
-            Subash Neupane
-          </Typography>
-          <Stack direction="row" sx={{ ml: "auto" }}>
-            <ListItemButton>
-              <ListItemIcon>
-                <VisibilityIcon
-                  sx={{
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    fontSize: "20px",
-                    border: "#fff 1px solid",
-                    borderRadius: "5px",
-                    p: "5px",
-                  }}
-                />
-              </ListItemIcon>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemIcon>
-                <EditIcon
-                  sx={{
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    fontSize: "20px",
-                    border: "#fff 1px solid",
-                    borderRadius: "5px",
-                    p: "5px",
-                  }}
-                />
-              </ListItemIcon>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemIcon>
-                <DeleteIcon
-                  sx={{
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    fontSize: "20px",
-                    border: "#fff 1px solid",
-                    borderRadius: "5px",
-                    p: "5px",
-                  }}
-                />
-              </ListItemIcon>
-            </ListItemButton>
-          </Stack>
-        </ListItem>
-        <Divider sx={{ borderColor: "#5e5e5e", width: "97%", p:'5px' }} />
-      </List>
-    </Card>
+    <TableContainer sx={{ mt: "10px" }}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell className="table">Name</TableCell>
+            <TableCell className="table" align="center">
+              Job Title
+            </TableCell>
+            <TableCell className="table" align="center">
+              Department
+            </TableCell>
+            <TableCell className="table" align="center">
+              Contact
+            </TableCell>
+            <TableCell className="table" align="center">
+              Actions
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {state.contacts.length > 0 &&
+            state.contacts.map((contact) => {
+              return (
+                <TableRow key={contact.id}>
+                  <TableCell className="table" component="th" scope="row">
+                    {contact.firstName} {contact.lastName}
+                  </TableCell>
+                  <TableCell className="table" align="center">
+                    {contact.title}
+                  </TableCell>
+                  <TableCell className="table" align="center">
+                    {contact.department}
+                  </TableCell>
+                  <TableCell className="table" align="center">
+                    {contact.mobile}
+                  </TableCell>
+                  <TableCell className="table" align="center">
+                    <Button color='secondary' variant="contained">
+                      <VisibilityIcon sx={{ fontSize: "20px" }} />
+                    </Button>
+                    <Button variant="contained" sx={{ ml:'10px' }}>
+                      <EditIcon sx={{ fontSize: "20px" }} />
+                    </Button>
+                    <Button color='error' variant="contained" sx={{ ml:'10px' }}>
+                      <DeleteIcon sx={{ fontSize: "20px" }} />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
