@@ -9,19 +9,47 @@ import {
   ListItem,
   List,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UsersList from "../../components/UsersList/UsersList";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Chart3 from "../../components/Charts/LineChart/LineChart";
 import { Link } from "react-router-dom";
+import { UsersService } from "../../Services/UsersService";
 
 const AdminDashboard = () => {
-  const [usersNumber, setusersNumber] = useState(0);
 
-  const pullData = (data) => {
-    setusersNumber(data);
-  };
+  // const [usersNumber, setusersNumber] = useState(0)
+
+  // const pullData = (data) => {
+  //   setusersNumber(data);
+  // }
+
+  const [state, setState] = useState({
+    employees: [],
+    errorMessage: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response = await UsersService.getAllEmployees();
+        setState({
+          ...state,
+          employees: response.data,
+        });
+      } catch (error) {
+        setState({
+          ...state,
+          errorMessage: "Sorry! Ran into an error",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+  
+  console.log(state)
 
   return (
     <Stack direction="row">
@@ -61,7 +89,7 @@ const AdminDashboard = () => {
                   <Grid container sx={{ mt: "5px", textAlign: "center" }}>
                     <Stack direction="column">
                       <Typography variant="h5" color="#FE4C24" sx={{ p: 1 }}>
-                        {usersNumber} Registered Users
+                        {state.employees.length} Registered Users
                       </Typography>
                       <List>
                         <ListItem sx={{ color: "#fff" }}>hello</ListItem>
@@ -114,7 +142,7 @@ const AdminDashboard = () => {
                   >
                     Users list
                   </Typography>
-                  <Link to={"/employee/add"} style={{ textDecoration: 'none' }}>
+                  <Link to={"/employees/add"}>
                     <Button
                       sx={{ ml: "20px", mt: "25px" }}
                       size="large"
@@ -126,7 +154,9 @@ const AdminDashboard = () => {
                     </Button>
                   </Link>
                 </Stack>
-                <UsersList function={pullData} />
+                <UsersList 
+                // function={pullData}
+                />
               </Stack>
             </Box>
           </Card>

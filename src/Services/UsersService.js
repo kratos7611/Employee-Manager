@@ -13,4 +13,9 @@ export class UsersService {
         let dataURL = `${this.serverURL}/Employees`
         return axios.post(dataURL, details)
     }
+
+    static getEmployee(employeeID) {
+        let dataURL = `${this.serverURL}/Employees/${employeeID}`
+        return axios.get(dataURL)
+    }
 }
