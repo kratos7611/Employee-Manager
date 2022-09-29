@@ -13,10 +13,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/system";
 import { UsersService } from "../../Services/UsersService";
+import { Link } from "react-router-dom";
 
-const UsersList = (props) => {
+const UsersList = () => {
   const [state, setState] = useState({
-    contacts: [],
+    employees: [],
     errorMessage: "",
   });
 
@@ -26,7 +27,7 @@ const UsersList = (props) => {
         let response = await UsersService.getAllEmployees();
         setState({
           ...state,
-          contacts: response.data,
+          employees: response.data,
         });
       } catch (error) {
         setState({
@@ -39,9 +40,9 @@ const UsersList = (props) => {
     fetchData();
   }, []);
 
-  const data = Object.keys(state.contacts).length;
+  // const data = Object.keys(state.employees).length;
 
-  props.function(data)
+  // props.function(data);
 
   return (
     <TableContainer sx={{ mt: "10px" }}>
@@ -64,30 +65,36 @@ const UsersList = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {state.contacts.length > 0 &&
-            state.contacts.map((contact) => {
+          {state.employees.length > 0 &&
+            state.employees.map((employee) => {
               return (
-                <TableRow key={contact.id}>
+                <TableRow key={employee.id}>
                   <TableCell className="table" component="th" scope="row">
-                    {contact.firstName} {contact.lastName}
+                    {employee.firstName} {employee.lastName}
                   </TableCell>
                   <TableCell className="table" align="center">
-                    {contact.title}
+                    {employee.title}
                   </TableCell>
                   <TableCell className="table" align="center">
-                    {contact.department}
+                    {employee.department}
                   </TableCell>
                   <TableCell className="table" align="center">
-                    {contact.mobile}
+                    {employee.mobile}
                   </TableCell>
                   <TableCell className="table" align="center">
-                    <Button color='secondary' variant="contained">
-                      <VisibilityIcon sx={{ fontSize: "20px" }} />
-                    </Button>
-                    <Button variant="contained" sx={{ ml:'10px' }}>
+                    <Link to={`/employees/view/${employee.id}`} style={{ textDecoration:'none' }}>
+                      <Button color="secondary" variant="contained">
+                        <VisibilityIcon sx={{ fontSize: "20px" }} />
+                      </Button>
+                    </Link>
+                    <Button variant="contained" sx={{ ml: "10px" }}>
                       <EditIcon sx={{ fontSize: "20px" }} />
                     </Button>
-                    <Button color='error' variant="contained" sx={{ ml:'10px' }}>
+                    <Button
+                      color="error"
+                      variant="contained"
+                      sx={{ ml: "10px" }}
+                    >
                       <DeleteIcon sx={{ fontSize: "20px" }} />
                     </Button>
                   </TableCell>

@@ -11,12 +11,12 @@ import {
 import { Box, Stack } from "@mui/system";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import { UsersService } from "../../../Services/UsersService";
 
 const AddEmployee = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [state, setState] = useState({
     details: {
@@ -29,7 +29,7 @@ const AddEmployee = () => {
       email: "",
       password: "",
     },
-    errorMessage:""
+    errorMessage: ""
   });
 
   const handleChange = (event) => {
@@ -43,22 +43,27 @@ const AddEmployee = () => {
     });
   };
 
-  const formSubmit = async(e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        let response = await UsersService.addEmployee(state.details);
-        if (response){
-            navigate ("/admin")
-        }
+      let response = await UsersService.addEmployee(state.details);
+      if (response) {
+        // alert("Employee Added")
+        Swal.fire(
+            'Added!',
+            'Employee Added Succesfully',
+            'success'
+          )
+        navigate("/admin");
+      }
     } catch (error) {
-        setState({...state, errorMessage:"Error"})
+      setState({ ...state });
     }
-  }
+  };
 
   return (
     <Stack>
-      <pre>{JSON.stringify(state.details)}</pre>
       <Grid container>
         <Sidebar />
         <Box
@@ -91,6 +96,8 @@ const AddEmployee = () => {
                 mt: "70px",
                 borderRadius: "30px",
               }}
+              success={state.formSuccess}
+              error={state.formError}
             >
               <Box sx={{ p: 2, mt: "20px" }}>
                 <Typography variant="h5" color="#0F1322" fontWeight="bold">
@@ -188,7 +195,12 @@ const AddEmployee = () => {
                   </Box>
                 </Grid>
               </Grid>
-              <Stack direction='column' alignItems='center' sx={{ p: 2 }} justifyContent='space-evenly'>
+              <Stack
+                direction="column"
+                alignItems="center"
+                sx={{ p: 2 }}
+                justifyContent="space-evenly"
+              >
                 <Button
                   sx={{ width: "200px", p: 1.5, mb: "20px", mt: "20px" }}
                   variant="contained"
@@ -196,14 +208,14 @@ const AddEmployee = () => {
                 >
                   Add New Employee
                 </Button>
-                <Link to={"/admin"} style={{ textDecoration: 'none' }}>
-                <Button
-                  sx={{ width: "100%", p: 1.5, mb: "20px"}}
-                  variant="contained"
-                  color='error'
-                >
-                  Cancel &rarr;
-                </Button>
+                <Link to={"/admin"} style={{ textDecoration: "none" }}>
+                  <Button
+                    sx={{ width: "100%", p: 1.5, mb: "20px" }}
+                    variant="contained"
+                    color="error"
+                  >
+                    Cancel &rarr;
+                  </Button>
                 </Link>
               </Stack>
             </Paper>

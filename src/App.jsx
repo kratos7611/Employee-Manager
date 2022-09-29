@@ -5,7 +5,7 @@ import Login from "./Pages/Login/Login";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AddEmployee from "./Pages/Admin/AddEmployee/AddEmployee";
-
+import ViewEmployee from "./Pages/ViewEmployee/ViewEmployee";
 
 const theme = createTheme({
   typography: {
@@ -23,7 +23,8 @@ function App() {
           <Route path={"/"} element={<Login />} />
           <Route path={"/dashboard"} element={<Dashboard />} />
           <Route path={"/admin"} element={<AdminDashboard/>}/>
-          <Route path={"/employee/add"} element={<AddEmployee />} />
+          <Route path={"/employees/add"} element={<AddEmployee />} />
+          <Route path={"/employees/view/:employeeID"} element={<ViewEmployee/>}/>
         </Routes>
       </React.Fragment>
     </ThemeProvider>

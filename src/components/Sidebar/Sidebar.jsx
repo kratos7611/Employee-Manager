@@ -13,16 +13,16 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Box } from "@mui/system";
-
-// , height: "100vh"
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <div>
       <Box>
         <Stack direction="column" sx={{ p: 3, flex:2 }} align="center">
-          <Typography variant="h6">EMS</Typography>
-
+          <Link to={"/admin"} style={{ textDecoration:'none' }}>
+          <Typography variant="h5">EMS</Typography>
+          </Link>
           <Box sx={{ mt: "100px" }}>
             <img
               src="../../../public/contact demo.png"
