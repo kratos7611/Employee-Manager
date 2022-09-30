@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Paper,
   Stack,
@@ -36,16 +36,22 @@ const Login = () => {
 
   return (
     <div className="login">
+      <Box sx={{ mt:'50px', ml:'120px' }}>
+          <Link to={"/admin"} style={{ textDecoration: "none" }}>
+            <img src="../../public/logo.png" alt="logo" width="220px" />
+          </Link>
+        </Box>
       <Stack alignItems="center" direction="row">
+        
         <Paper
           component="form"
           onSubmit={handleSubmit}
           align="center"
-          elevation={3}
+          elevation={7}
           sx={{
             width: "40%",
             ml: "100px",
-            mt: "150px",
+            mt: "60px",
             borderRadius: "30px",
           }}
         >

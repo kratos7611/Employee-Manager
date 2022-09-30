@@ -12,10 +12,30 @@ import {
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PeopleIcon from '@mui/icons-material/People';
 import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+
+  const navigate = useNavigate();
+
+  const swalFire = () => {
+    Swal.fire({
+      title: "Confirm Logging Out ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Log out",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Logged Out Sccesfully!");
+        navigate ("/")
+      }
+    });
+  };
+
   return (
     <div>
       <Box>
@@ -57,27 +77,20 @@ const Sidebar = () => {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                      <LogoutIcon sx={{ fontSize: "1.8em" }} />
+                      <PeopleIcon sx={{ fontSize: "1.8em" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Logout" />
+                    <ListItemText primary="View Collegues" />
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                  <ListItemButton>
+                  <ListItemButton onClick={swalFire}>
                     <ListItemIcon>
                       <LogoutIcon sx={{ fontSize: "1.8em" }} />
                     </ListItemIcon>
                     <ListItemText primary="Logout" />
                   </ListItemButton>
                 </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <LogoutIcon sx={{ fontSize: "1.8em" }} />
-                    </ListItemIcon>
-                    <ListItemText primary="Logout" />
-                  </ListItemButton>
-                </ListItem>
+                
               </List>
             </nav>
             <Divider />

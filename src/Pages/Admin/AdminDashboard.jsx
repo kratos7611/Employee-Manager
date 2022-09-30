@@ -8,11 +8,16 @@ import {
   Button,
   ListItem,
   List,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import UsersList from "../../components/UsersList/UsersList";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import ReportIcon from "@mui/icons-material/Report";
+import StarsIcon from "@mui/icons-material/Stars";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Chart3 from "../../components/Charts/LineChart/LineChart";
 import { Link } from "react-router-dom";
 import { UsersService } from "../../Services/UsersService";
@@ -84,14 +89,33 @@ const AdminDashboard = () => {
                 </Typography>
                 <Box>
                   <Grid container sx={{ mt: "5px", textAlign: "center" }}>
-                    <Stack direction="column">
-                      <Typography variant="h5" color="#FE4C24" sx={{ p: 1 }}>
-                        {state.employees.length} Registered Users
-                      </Typography>
-                      <List>
-                        <ListItem sx={{ color: "#fff" }}>hello</ListItem>
-                      </List>
-                    </Stack>
+                    <Typography variant="h5" color="#FE4C24" sx={{ p: 1 }}>
+                      {state.employees.length} Registered User(s)
+                    </Typography>
+                    <List>
+                      <ListItem sx={{ color: "#fff" }}>
+                        <ListItemIcon>
+                          <ReportIcon
+                            sx={{ color: "#fff", fontSize: "30px" }}
+                          />
+                        </ListItemIcon>
+                        <ListItemText primary="4 Pending User Confirmations" />
+                      </ListItem>
+                      <ListItem sx={{ color: "#fff" }}>
+                        <ListItemIcon>
+                          <StarsIcon sx={{ color: "#fff", fontSize: "30px" }} />
+                        </ListItemIcon>
+                        <ListItemText primary="0 Issues Recorded" />
+                      </ListItem>
+                      <ListItem sx={{ color: "#fff" }}>
+                        <ListItemIcon>
+                        <CheckCircleIcon
+                        sx={{ color: "#fff", fontSize: "30px" }}
+                      />
+                        </ListItemIcon>
+                        <ListItemText primary="Tasks completion Recorded" />
+                      </ListItem>
+                    </List>
                   </Grid>
                 </Box>
               </CardContent>

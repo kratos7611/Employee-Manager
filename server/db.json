@@ -1,3 +1,15 @@
 {
-  "Employees": []
+  "Employees": [
+    {
+      "firstName": "Nischal",
+      "lastName": "Adhikari",
+      "photo": "https://www.freeiconspng.com/thumbs/contact-icon-png/contact-icon-png-1.png",
+      "title": "Notice",
+      "mobile": "7676546",
+      "department": "backened",
+      "email": "nischal.b.adhikari@gmail.com",
+      "password": "123",
+      "id": 1
+    }
+  ]
 }
