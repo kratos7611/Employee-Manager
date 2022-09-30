@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 import { UsersService } from "../../Services/UsersService";
 
 const AdminDashboard = () => {
-
   // const [usersNumber, setusersNumber] = useState(0)
 
   // const pullData = (data) => {
@@ -48,8 +47,6 @@ const AdminDashboard = () => {
 
     fetchData();
   }, []);
-  
-  console.log(state)
 
   return (
     <Stack direction="row">
@@ -154,7 +151,7 @@ const AdminDashboard = () => {
                     </Button>
                   </Link>
                 </Stack>
-                <UsersList 
+                <UsersList
                 // function={pullData}
                 />
               </Stack>

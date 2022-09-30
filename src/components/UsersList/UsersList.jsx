@@ -11,9 +11,8 @@ import React, { useEffect, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Stack } from "@mui/system";
-import { UsersService } from "../../Services/UsersService";
 import { Link } from "react-router-dom";
+import { UsersService } from "../../Services/UsersService";
 
 const UsersList = () => {
   const [state, setState] = useState({
@@ -43,6 +42,35 @@ const UsersList = () => {
   // const data = Object.keys(state.employees).length;
 
   // props.function(data);
+
+  const swalFire = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this action!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Deleted!", "Employee data has been removed", "success");
+        clickDelete(id);
+      }
+    });
+  };
+
+  const clickDelete = async (employeeID) => {
+    try {
+      let response = await UsersService.deleteEmployee(employeeID);
+      if (response) {
+        let response = await UsersService.getAllEmployees();
+        setState({ ...state, employees: response.data });
+      }
+    } catch (error) {
+      setState({ ...state, errorMessage: "Sorry! Error" });
+    }
+  };
 
   return (
     <TableContainer sx={{ mt: "10px" }}>
@@ -82,18 +110,29 @@ const UsersList = () => {
                     {employee.mobile}
                   </TableCell>
                   <TableCell className="table" align="center">
-                    <Link to={`/employees/view/${employee.id}`} style={{ textDecoration:'none' }}>
+                    <Link
+                      to={`/employees/view/${employee.id}`}
+                      style={{ textDecoration: "none" }}
+                    >
                       <Button color="secondary" variant="contained">
                         <VisibilityIcon sx={{ fontSize: "20px" }} />
                       </Button>
                     </Link>
-                    <Button variant="contained" sx={{ ml: "10px" }}>
-                      <EditIcon sx={{ fontSize: "20px" }} />
-                    </Button>
+                    <Link to={`/employees/edit/${employee.id}`}>
+                      <Button variant="contained" sx={{ ml: "10px" }}>
+                        <EditIcon sx={{ fontSize: "20px" }} />
+                      </Button>
+                    </Link>
                     <Button
                       color="error"
                       variant="contained"
                       sx={{ ml: "10px" }}
+                      // onClick={() => {
+                      //   clickDelete(employee.id);
+                      // }}
+                      onClick={() => {
+                        swalFire(employee.id);
+                      }}
                     >
                       <DeleteIcon sx={{ fontSize: "20px" }} />
                     </Button>

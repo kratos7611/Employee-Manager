@@ -18,4 +18,14 @@ export class UsersService {
         let dataURL = `${this.serverURL}/Employees/${employeeID}`
         return axios.get(dataURL)
     }
+
+    static editEmployee(details, employeeID) {
+        let dataURL = `${this.serverURL}/Employees/${employeeID}`
+        return axios.put(dataURL, details)
+    }
+
+    static deleteEmployee(employeeID){
+        let dataURL = `${this.serverURL}/Employees/${employeeID}`
+        return axios.delete(dataURL)
+    }
 }

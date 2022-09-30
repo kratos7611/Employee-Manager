@@ -7,13 +7,14 @@ import {
 } from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import { UsersService } from "../../../Services/UsersService";
 
 const AddEmployee = () => {
   const navigate = useNavigate();
+  const { employeeID } = useParams();
 
   const [state, setState] = useState({
     details: {
@@ -22,9 +23,7 @@ const AddEmployee = () => {
       photo: "",
       title: "",
       mobile: "",
-      department: "",
-      email: "",
-      password: "",
+      department: ""
     },
     errorMessage: ""
   });
@@ -44,11 +43,12 @@ const AddEmployee = () => {
     e.preventDefault();
 
     try {
-      let response = await UsersService.addEmployee(state.details);
+      let response = await UsersService.editEmployee(state.details, employeeID);
       if (response) {
+        // alert("Employee Added")
         Swal.fire(
-            'Added!',
-            'Employee Added Succesfully',
+            'Updated!',
+            'Employee Details Updated Succesfully',
             'success'
           )
         navigate("/admin");
@@ -68,7 +68,7 @@ const AddEmployee = () => {
             flex: 9,
             backgroundColor: "#F3F1EF",
             borderRadius: "50px",
-            height: "95vh",
+            height: "93vh",
           }}
         >
           <Typography
@@ -77,7 +77,7 @@ const AddEmployee = () => {
             fontWeight="bold"
             sx={{ mt: "30px", mb: "30px" }}
           >
-            Add A New Employee
+            Edit Employee Details
           </Typography>
           <Box direction="row">
             <Paper
@@ -97,13 +97,14 @@ const AddEmployee = () => {
             >
               <Box sx={{ p: 2, mt: "20px" }}>
                 <Typography variant="h5" color="#0F1322" fontWeight="bold">
-                  Enter Employee Details
+                  Enter Updated Employee Details
                 </Typography>
               </Box>
               <Grid container justifyContent="space-evenly" sx={{ mt: "10px" }}>
                 <Grid item>
                   <Box>
                     <TextField
+                      required
                       label="First Name"
                       name="firstName"
                       value={state.details.firstName}
@@ -167,30 +168,6 @@ const AddEmployee = () => {
                   </Box>
                 </Grid>
               </Grid>
-              <Grid container justifyContent="space-evenly" sx={{ mt: "10px" }}>
-                <Grid item>
-                  <Box>
-                    <TextField
-                      label="E-mail Address"
-                      type="email"
-                      name="email"
-                      value={state.details.email}
-                      onChange={handleChange}
-                    ></TextField>
-                  </Box>
-                </Grid>
-                <Grid item>
-                  <Box>
-                    <TextField
-                      label="Password"
-                      name="password"
-                      type="password"
-                      value={state.details.password}
-                      onChange={handleChange}
-                    ></TextField>
-                  </Box>
-                </Grid>
-              </Grid>
               <Stack
                 direction="column"
                 alignItems="center"
@@ -198,11 +175,11 @@ const AddEmployee = () => {
                 justifyContent="space-evenly"
               >
                 <Button
-                  sx={{ width: "200px", p: 1.5, mb: "20px", mt: "20px" }}
+                  sx={{ width: "250px", p: 1.5, mb: "20px", mt: "20px" }}
                   variant="contained"
                   onClick={formSubmit}
                 >
-                  Add New Employee
+                  Update Employee Details
                 </Button>
                 <Link to={"/admin"} style={{ textDecoration: "none" }}>
                   <Button
