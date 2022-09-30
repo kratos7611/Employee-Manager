@@ -23,7 +23,7 @@ const Sidebar = () => {
           <Link to={"/admin"} style={{ textDecoration:'none' }}>
           <Typography variant="h5">EMS</Typography>
           </Link>
-          <Box sx={{ mt: "100px" }}>
+          <Box sx={{ mt: "80px" }}>
             <img
               src="../../../public/contact demo.png"
               alt="conatct image"

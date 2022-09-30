@@ -14,8 +14,8 @@ import {
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import { UsersService } from "../../Services/UsersService";
+import Sidebar from "../../../components/Sidebar/Sidebar";
+import { UsersService } from "../../../Services/UsersService";
 
 const ViewEmployee = () => {
   const { employeeID } = useParams();
@@ -42,8 +42,6 @@ const ViewEmployee = () => {
     };
     fetchData();
   }, []);
-
-  console.log(state);
 
   return (
     <Stack direction="row">
@@ -76,7 +74,7 @@ const ViewEmployee = () => {
                 mt: "80px",
                 borderRadius: "30px",
                 display: "flex",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               <CardMedia
@@ -95,7 +93,7 @@ const ViewEmployee = () => {
                       : {state.details.firstName} {state.details.lastName}
                     </Typography>
                   </ListItem>
-                  <Divider sx={{ p:'2px' }} />
+                  <Divider sx={{ p: "2px" }} />
                   <ListItem>
                     <Typography variant="h6" fontWeight="bold">
                       E-mail Address
@@ -104,7 +102,7 @@ const ViewEmployee = () => {
                       : {state.details.email}
                     </Typography>
                   </ListItem>
-                  <Divider sx={{ p:'2px' }}/>
+                  <Divider sx={{ p: "2px" }} />
                   <ListItem>
                     <Typography variant="h6" fontWeight="bold">
                       Contact Number
@@ -114,7 +112,7 @@ const ViewEmployee = () => {
                       : {state.details.mobile}
                     </Typography>
                   </ListItem>
-                  <Divider sx={{ p:'2px' }}/>
+                  <Divider sx={{ p: "2px" }} />
                   <ListItem>
                     <Typography variant="h6" fontWeight="bold">
                       Job Title
@@ -123,7 +121,7 @@ const ViewEmployee = () => {
                       : {state.details.email}
                     </Typography>
                   </ListItem>
-                  <Divider sx={{ p:'2px' }} />
+                  <Divider sx={{ p: "2px" }} />
                   <ListItem>
                     <Typography variant="h6" fontWeight="bold">
                       Department
@@ -133,10 +131,14 @@ const ViewEmployee = () => {
                     </Typography>
                   </ListItem>
                 </List>
-                <Link to={"/admin"} style={{ textDecoration:'none' }}>
-                <Button variant='contained' size='large' sx={{ mt:'60px', ml:'15px' }}>
-                &larr; Back
-                </Button>
+                <Link to={"/admin"} style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    sx={{ mt: "60px", ml: "15px" }}
+                  >
+                    &larr; Back
+                  </Button>
                 </Link>
               </CardContent>
             </Card>
