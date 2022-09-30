@@ -6,11 +6,9 @@ import Feed from "../../components/Feed/Feed";
 
 const Dashboard = () => {
   return (
-    <Stack direction="row" spacing={2}>
-      <Grid container>
+    <Stack direction="row">
         <Sidebar />
         <Feed />
-      </Grid>
     </Stack>
   );
 };

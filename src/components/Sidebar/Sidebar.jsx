@@ -19,11 +19,13 @@ const Sidebar = () => {
   return (
     <div>
       <Box>
-        <Stack direction="column" sx={{ p: 3, flex:2 }} align="center">
+        <Stack direction="column" sx={{ p: 3, flex:2, ml:'10px', mr:'10px'}} align="center">
+          <Box sx={{ mt:'10px' }}>
           <Link to={"/admin"} style={{ textDecoration:'none' }}>
-          <Typography variant="h5">EMS</Typography>
+            <img src="../../public/logo.png" alt="logo" width="220px" />
           </Link>
-          <Box sx={{ mt: "80px" }}>
+          </Box>
+          <Box sx={{ mt: "100px" }}>
             <img
               src="../../../public/contact demo.png"
               alt="conatct image"

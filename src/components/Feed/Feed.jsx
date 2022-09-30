@@ -21,7 +21,7 @@ import Chart2 from "../Charts/BarChart/BarChart";
 const Feed = () => {
   return (
     <Box
-      sx={{ p: 3, flex: 8, backgroundColor: "#F3F1EF", borderRadius: "50px" }}
+      sx={{ p: 3, backgroundColor: "#F3F1EF", borderRadius: "50px" }}
     >
       <Typography
         variant="h3"
