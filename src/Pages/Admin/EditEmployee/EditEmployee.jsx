@@ -3,7 +3,7 @@ import { Box, Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import Sidebar from "../../../components/Sidebar/Sidebar";
+import Sidebar from "../../../components/Sidebar/AdminSidebar";
 import { UsersService } from "../../../Services/UsersService";
 
 const AddEmployee = () => {

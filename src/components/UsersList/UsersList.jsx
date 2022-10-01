@@ -14,7 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import { UsersService } from "../../Services/UsersService";
 
-const UsersList = () => {
+const UsersList = (props) => {
   const [state, setState] = useState({
     employees: [],
     errorMessage: "",
@@ -27,6 +27,7 @@ const UsersList = () => {
         setState({
           ...state,
           employees: response.data,
+          filteredEmployees: response.data
         });
       } catch (error) {
         setState({
@@ -66,6 +67,7 @@ const UsersList = () => {
       if (response) {
         let response = await UsersService.getAllEmployees();
         setState({ ...state, employees: response.data });
+        
       }
     } catch (error) {
       setState({ ...state, errorMessage: "Sorry! Error" });
@@ -93,8 +95,8 @@ const UsersList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {state.employees.length > 0 &&
-            state.employees.map((employee) => {
+          {props.filteredEmployees.length > 0 &&
+            props.filteredEmployees.map((employee) => {
               return (
                 <TableRow key={employee.id}>
                   <TableCell className="table" component="th" scope="row">
