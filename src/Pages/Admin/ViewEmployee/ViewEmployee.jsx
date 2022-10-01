@@ -14,7 +14,7 @@ import {
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Sidebar from "../../../components/Sidebar/Sidebar";
+import Sidebar from "../../../components/Sidebar/AdminSidebar";
 import { UsersService } from "../../../Services/UsersService";
 
 const ViewEmployee = () => {

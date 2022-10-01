@@ -41,7 +41,7 @@ const Sidebar = () => {
       <Box>
         <Stack direction="column" sx={{ p: 3, flex:2, ml:'10px', mr:'10px'}} align="center">
           <Box sx={{ mt:'10px' }}>
-          <Link to={"/dashboard"} style={{ textDecoration:'none' }}>
+          <Link to={"/admin"} style={{ textDecoration:'none' }}>
             <img src="../../public/logo.png" alt="logo" width="220px" />
           </Link>
           </Box>
@@ -72,14 +72,6 @@ const Sidebar = () => {
                       <AccountCircleIcon sx={{ fontSize: "1.8em" }} />
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <PeopleIcon sx={{ fontSize: "1.8em" }} />
-                    </ListItemIcon>
-                    <ListItemText primary="View Collegues" />
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
