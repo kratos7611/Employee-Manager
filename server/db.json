@@ -1,15 +1,76 @@
 {
   "Employees": [
     {
-      "firstName": "Niva",
-      "lastName": "Adhikari",
+      "firstName": "Admin",
+      "lastName": "Admin",
       "photo": "https://www.freeiconspng.com/thumbs/contact-icon-png/contact-icon-png-1.png",
-      "title": "Back-end developer",
-      "mobile": "9841358545",
-      "department": "backened",
+      "title": "Admin",
+      "mobile": "1234567890",
+      "department": "Admin",
       "email": "admin@gmail.com",
-      "password": "ASDAS",
-      "id": 1
+      "password": "Ilovenepal123!",
+      "role": "admin",
+      "id": 3
+    },
+    {
+      "firstName": "Nischal",
+      "lastName": "Adhikari",
+      "photo": "https://img.freepik.com/premium-vector/cartoon-happy-little-boy-raising-hands_353337-803.jpg?w=2000",
+      "title": "Front End Developer",
+      "mobile": "1234567890",
+      "department": "Front End",
+      "email": "nischal.b.adhikari@gmail.com",
+      "password": "Ilovenepal123!",
+      "role": "user",
+      "id": 4
+    },
+    {
+      "firstName": "Hritisha ",
+      "lastName": "Thapa",
+      "photo": "data:image/png;base64,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",
+      "title": "Front End Developer",
+      "mobile": "1234567890",
+      "department": "Front End",
+      "email": "hriti@gmail.com",
+      "password": "Ilovefood123!",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "firstName": "Deepa",
+      "lastName": "Shakya",
+      "photo": "https://img.freepik.com/free-vector/little-indian-girl-looks-down-shows-her-fingers-down-dark-skin-cartoon-character_71593-1078.jpg?w=2000",
+      "title": "Back End",
+      "mobile": "0000000000",
+      "department": "Back End",
+      "email": "deepa@gmail.com",
+      "password": "Iloveme123!",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "firstName": "Bishant",
+      "lastName": "Karki",
+      "photo": "https://img.freepik.com/premium-vector/cute-little-boy-cartoon-waving-hand_322598-79.jpg?w=2000",
+      "title": "Flutter Developer",
+      "mobile": "1234567890",
+      "department": "Mobile",
+      "email": "bishant@gmail.com",
+      "password": "Ilovecoding123!",
+      "role": "user",
+      "id": 7
+    },
+    {
+      "firstName": "Gagan",
+      "lastName": "Rai",
+      "photo": "https://img.freepik.com/premium-vector/cute-little-boy-cartoon-waving-hand_322598-79.jpg?w=2000",
+      "title": "Back End Developer",
+      "mobile": "1234567890",
+      "department": "Mobile",
+      "email": "gagan@gmail.com",
+      "password": "Ilovegaming123!",
+      "role": "user",
+      "id": 8
     }
   ]
 }

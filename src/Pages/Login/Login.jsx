@@ -11,14 +11,30 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
+import { UsersService } from "../../Services/UsersService";
 
 const Login = () => {
   const navigate = useNavigate();
 
+  const [state, setState] = useState({
+    employees: [],
+    errorMessage: "",
+    filteredEmployees: [],
+  });
+
   const [formData, seFormData] = useState({
     email: "",
     password: "",
+    role: "",
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    emailError: "",
+    passwordError: "",
   });
 
   const handleChange = (event) => {
@@ -31,18 +47,48 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    navigate("/dashboard");
+    state.employees.map((employee) => {
+      if (
+        employee.email === formData.email &&
+        employee.password === formData.password &&
+        employee.role === formData.role
+      ) {
+        navigate ("/admin")
+      } else {
+        setFormErrors({
+          emailError:"Invalid E-mail",
+          passwordError: "Invalid Password"
+        })
+      }
+    });
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let response = await UsersService.getAllEmployees();
+        setState({
+          ...state,
+          employees: response.data,
+          filteredEmployees: response.data,
+        });
+      } catch (error) {
+        setState({
+          ...state,
+          errorMessage: "Sorry! Ran into an error",
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="login">
-      <Box sx={{ mt:'50px', ml:'120px' }}>
-          <Link to={"/admin"} style={{ textDecoration: "none" }}>
-            <img src="../../public/logo.png" alt="logo" width="220px" />
-          </Link>
-        </Box>
+      <Box sx={{ mt: "50px", ml: "120px" }}>
+        <img src="../../public/logo.png" alt="logo" width="220px" />
+      </Box>
       <Stack alignItems="center" direction="row">
-        
         <Paper
           component="form"
           onSubmit={handleSubmit}
@@ -70,8 +116,16 @@ const Login = () => {
               onChange={handleChange}
             ></TextField>
           </Box>
+          <Typography
+            variant="subtitle2"
+            sx={{ color: "error.main"}}
+          >
+            {formErrors.emailError}
+          </Typography>
           <Box sx={{ p: 2 }}>
             <TextField
+              id="outlined-password-input"
+              type="password"
               sx={{ width: "70%" }}
               label="Enter Your Password"
               name="password"
@@ -79,14 +133,26 @@ const Login = () => {
               onChange={handleChange}
             ></TextField>
           </Box>
-          <Box sx={{ ml: "110px" }}>
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Remember Me"
-              />
-            </FormGroup>
-          </Box>
+          <Typography
+            variant="subtitle2"
+            sx={{ color: "error.main"}}
+          >
+            {formErrors.passwordError}
+          </Typography>
+          <FormControl sx={{ width: "40%", mt: "15px" }}>
+            <InputLabel id="demo-simple-select-label">Role</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="role"
+              value={formData.role}
+              label="Age"
+              onChange={handleChange}
+            >
+              <MenuItem value={"admin"}>Admin</MenuItem>
+              <MenuItem value={"user"}>User</MenuItem>
+            </Select>
+          </FormControl>
           <Box sx={{ p: 2 }}>
             <Button
               sx={{ width: "50%", p: 1.5, mb: "20px", mt: "20px" }}

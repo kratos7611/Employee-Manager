@@ -1,4 +1,14 @@
-import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Box, Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,6 +29,7 @@ const AddEmployee = () => {
       department: "",
       email: "",
       password: "",
+      role: "",
     },
     errorMessage: "",
   });
@@ -39,6 +50,8 @@ const AddEmployee = () => {
   const validate = (values) => {
     const errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!values.firstName) {
       errors.firstName = "First Name Is Required";
@@ -69,6 +82,12 @@ const AddEmployee = () => {
     }
     if (!values.password) {
       errors.password = "Password Is Required";
+    } else if (!passwordRegex.test(values.password)) {
+      errors.password =
+        "Atleast 1 Uppercase 1 Digit 1 Special Character Required";
+    }
+    if (!values.role) {
+      errors.role = "Role specification is required"
     }
 
     return errors;
@@ -96,6 +115,8 @@ const AddEmployee = () => {
     setFormErrors(validate(state.details));
     setIsSubmit(true);
   };
+
+  console.log(state.details)
 
   return (
     <Stack>
@@ -146,6 +167,8 @@ const AddEmployee = () => {
                       name="firstName"
                       value={state.details.firstName}
                       onChange={handleChange}
+                      style={{ textTransform: "capitalize" }}
+                      // onMouseEnter={changeCase}
                     ></TextField>
                   </Box>
                   <Typography
@@ -282,6 +305,30 @@ const AddEmployee = () => {
                   >
                     {formErrors.password}
                   </Typography>
+                </Grid>
+                <Grid container justifyContent='space-evenly' sx={{ mt: "10px" }}>
+                  <Grid item>
+                    <FormControl sx={{ width:'100px' }}>
+                      <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        name="role"
+                        value={state.details.role}
+                        label="Role"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={"admin"}>Admin</MenuItem>  
+                        <MenuItem value={"user"}>User</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <Typography
+                    variant="subtitle2"
+                    sx={{ color: "error.main", mt: "10px" }}
+                  >
+                    {formErrors.role}
+                  </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
               <Stack
