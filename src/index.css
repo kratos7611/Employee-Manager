@@ -41,6 +41,10 @@ html, body {
   color: white !important;
 }
 
+.changeCase{
+  text-transform:capitalize;
+}
+
 @media screen and (max-width: 900px) {
   .category-btn {
     margin: 10px;

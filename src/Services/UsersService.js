@@ -5,7 +5,7 @@ export class UsersService {
     static serverURL = "http://localhost:9000"
 
     static getAllEmployees() {
-        let dataURL = `${this.serverURL}/Employees`
+        let dataURL = `${this.serverURL}/Employees?_sort=firstName&_order=asc`
         return axios.get(dataURL)
     }
 

@@ -33,9 +33,7 @@ import { Link } from "react-router-dom";
 import { UsersService } from "../../Services/UsersService";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 
-
 const AdminDashboard = () => {
-
   const [state, setState] = useState({
     employees: [],
     errorMessage: "",
@@ -74,6 +72,7 @@ const AdminDashboard = () => {
         });
       }
     };
+
 
     fetchData();
   }, []);
