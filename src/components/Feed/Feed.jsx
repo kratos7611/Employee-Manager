@@ -20,12 +20,10 @@ import Chart2 from "../Charts/BarChart/BarChart";
 
 const Feed = () => {
   return (
-    <Box
-      sx={{ p: 3, backgroundColor: "#F3F1EF", borderRadius: "50px" }}
-    >
+    <Box sx={{ p: 3, backgroundColor: "#F3F1EF", borderRadius: "50px" }}>
       <Typography
         variant="h3"
-        fontSize='32px'
+        fontSize="32px"
         fontWeight="bold"
         sx={{ mt: "30px", mb: "30px" }}
       >

@@ -53,12 +53,12 @@ const Login = () => {
         employee.password === formData.password &&
         employee.role === formData.role
       ) {
-        navigate ("/admin")
+        navigate("/admin");
       } else {
         setFormErrors({
-          emailError:"Invalid E-mail",
-          passwordError: "Invalid Password"
-        })
+          emailError: "Invalid E-mail",
+          passwordError: "Invalid Password",
+        });
       }
     });
   };
@@ -116,10 +116,7 @@ const Login = () => {
               onChange={handleChange}
             ></TextField>
           </Box>
-          <Typography
-            variant="subtitle2"
-            sx={{ color: "error.main"}}
-          >
+          <Typography variant="subtitle2" sx={{ color: "error.main" }}>
             {formErrors.emailError}
           </Typography>
           <Box sx={{ p: 2 }}>
@@ -133,10 +130,7 @@ const Login = () => {
               onChange={handleChange}
             ></TextField>
           </Box>
-          <Typography
-            variant="subtitle2"
-            sx={{ color: "error.main"}}
-          >
+          <Typography variant="subtitle2" sx={{ color: "error.main" }}>
             {formErrors.passwordError}
           </Typography>
           <FormControl sx={{ width: "40%", mt: "15px" }}>

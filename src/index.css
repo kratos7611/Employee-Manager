@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap");
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -41,8 +42,8 @@ html, body {
   color: white !important;
 }
 
-.changeCase{
-  text-transform:capitalize;
+.changeCase {
+  text-transform: capitalize;
 }
 
 @media screen and (max-width: 900px) {

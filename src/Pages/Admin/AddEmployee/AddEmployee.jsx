@@ -87,7 +87,7 @@ const AddEmployee = () => {
         "Atleast 1 Uppercase 1 Digit 1 Special Character Required";
     }
     if (!values.role) {
-      errors.role = "Role specification is required"
+      errors.role = "Role specification is required";
     }
 
     return errors;
@@ -116,7 +116,7 @@ const AddEmployee = () => {
     setIsSubmit(true);
   };
 
-  console.log(state.details)
+  console.log(state.details);
 
   return (
     <Stack>
@@ -306,10 +306,16 @@ const AddEmployee = () => {
                     {formErrors.password}
                   </Typography>
                 </Grid>
-                <Grid container justifyContent='space-evenly' sx={{ mt: "10px" }}>
+                <Grid
+                  container
+                  justifyContent="space-evenly"
+                  sx={{ mt: "10px" }}
+                >
                   <Grid item>
-                    <FormControl sx={{ width:'100px' }}>
-                      <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                    <FormControl sx={{ width: "100px" }}>
+                      <InputLabel id="demo-simple-select-label">
+                        Role
+                      </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -318,16 +324,16 @@ const AddEmployee = () => {
                         label="Role"
                         onChange={handleChange}
                       >
-                        <MenuItem value={"admin"}>Admin</MenuItem>  
+                        <MenuItem value={"admin"}>Admin</MenuItem>
                         <MenuItem value={"user"}>User</MenuItem>
                       </Select>
                     </FormControl>
                     <Typography
-                    variant="subtitle2"
-                    sx={{ color: "error.main", mt: "10px" }}
-                  >
-                    {formErrors.role}
-                  </Typography>
+                      variant="subtitle2"
+                      sx={{ color: "error.main", mt: "10px" }}
+                    >
+                      {formErrors.role}
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>

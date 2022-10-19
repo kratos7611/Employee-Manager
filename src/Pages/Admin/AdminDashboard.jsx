@@ -73,7 +73,6 @@ const AdminDashboard = () => {
       }
     };
 
-
     fetchData();
   }, []);
 

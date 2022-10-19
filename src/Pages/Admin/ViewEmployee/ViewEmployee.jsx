@@ -118,7 +118,7 @@ const ViewEmployee = () => {
                       Job Title
                     </Typography>
                     <Typography variant="h6">
-                      : {state.details.email}
+                      : {state.details.title}
                     </Typography>
                   </ListItem>
                   <Divider sx={{ p: "2px" }} />
